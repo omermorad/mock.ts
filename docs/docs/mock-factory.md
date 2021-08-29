@@ -1,3 +1,8 @@
+---
+sidebar_position: 3
+---
+
+
 # Mockingbird API 🐦
 
 ## Introduction
@@ -18,7 +23,7 @@ function MockFactory<TClass>(target: Class<TClass>): MockBuilder<TClass>;
 Where `Class<TClass>` is an actual JavaScript class. \
 Returns `MockBuilder` when invoked.
 
-<br>
+
 
 ## `MockBuilder`
 
@@ -39,7 +44,7 @@ export class Bird {
 }
 ```
 
-<details><summary><b>🕵️‍ Discover more about MockBuilder interface</b></summary><p>
+### 🕵️‍ Discover more about MockBuilder interface
 
 ```typescript
 export interface MockBuilder<TClass = any> {
@@ -51,7 +56,7 @@ export interface MockBuilder<TClass = any> {
   many(count: number): TClass[];
 }
 ```
-</p></details>
+
 
 
 ## API
@@ -63,15 +68,15 @@ Simply creates (and return) a new mock from the class (`Bird`); here is an examp
 const birdMock = MockFactory<Bird>(Bird).one();
 ```
 
-<details><summary><code>💡 Hint</code></summary><p>
+#### 💡 Hint
 
 ```
 This method can not be chained,
 it just return an mock which is an instance of the class Bird
 ```
-</p></details>
 
-<br />
+
+
 
 ### `.many(count: number)`
 Creates (and return) the required `count` mocks from the class; \
@@ -81,15 +86,15 @@ here is an example:
 const birdMock = MockFactory<Bird>(Bird).many(3);
 ```
 
-<details><summary><code>💡 Hint</code></summary><p>
+#### 💡 Hint
 
 ```
 The .one() method can not be chained,
 it just return an instance of the class
 ```
-</p></details>
 
-<br />
+
+
 
 ### `.omit(...keys: string[])`
 Simply ignore some keys in the generated mock.
@@ -98,7 +103,7 @@ Simply ignore some keys in the generated mock.
 const birdMock = MockFactory<Bird>(Bird).omit('canFly').one();
 ```
 
-<details><summary><code>💡 Hint</code></summary><p>
+#### 💡 Hint
 
 ```
 .ignore() takes as many arguments as you want as long as they are strings
@@ -107,9 +112,9 @@ and they are part of the class properties
 Bird class has 3 properties: 'name', 'isAwesome' and 'canFly';
 In the example above will get a mock without the property 'canFly'.
 ```
-</p></details>
 
-<br />
+
+
 
 ### `.pick(...keys: string[])`
 Pick specific properties from the class.
@@ -118,7 +123,7 @@ Pick specific properties from the class.
 const birdMock = MockFactory<Bird>(Bird).pick('canFly').one();
 ```
 
-<details><summary><code>💡 Hint</code></summary><p>
+#### 💡 Hint
 
 ```
 .ignore() takes as many arguments as you want as long as they are strings
@@ -127,9 +132,9 @@ and they are part of the class properties
 Bird class has 3 properties: 'name', 'isAwesome' and 'canFly';
 In the example above will get a mock without the property 'canFly'.
 ```
-</p></details>
 
-<br />
+
+
 
 ### `.mutate()`
 
@@ -141,7 +146,7 @@ to see an example.
 const birdMock = MockFactory<Bird>(Bird).mutate({ name: 'Birdy Bird' }).one();
 ```
 
-<details><summary><code>💡 Hint</code></summary><p>
+#### 💡 Hint
 
 Here is a detailed example:
 
@@ -158,11 +163,9 @@ assert.equal(oneBird.name, 'Birdy Bird')
 
 When using 'many', the outcome will be an array of objects with the given mutations
 ```
-</p></details>
 
-<br />
 
-<details><summary><code>💡 Hint (using faker)</code></summary><p>
+#### 💡 Hint (using faker)
 
 Here is another example using `faker` and a callback:
 
@@ -170,9 +173,7 @@ Here is another example using `faker` and a callback:
 const builder = MockFactory<Bird>(Bird).mutate((faker) => ({ name: faker.name.firstName() }));
 const oneBird = builder.one();
 ```
-</p></details>
 
-<br />
 
 ### `.plain()`
 
@@ -184,7 +185,7 @@ and not an instance of the class `Bird`
 const birdMock = MockFactory<Bird>(Bird).plain().one();
 ```
 
-<details><summary><code>💡 Hint</code></summary><p>
+#### 💡 Hint
 
 ```
 Calling .one() and .many() will return an actual instance of the class (Bird).
@@ -195,9 +196,9 @@ When using .plain() you will get an object which is instance of Object
 Using .plain() with .many() will convery all the objects in the array
 into plain objects
 ```
-</p></details>
 
-<br />
+
+
 
 ### `.setLocale(locale: string)`
 Sets the locale of the fake data (only apply when you use `faker`):
@@ -206,7 +207,7 @@ Sets the locale of the fake data (only apply when you use `faker`):
 const builder = MockFactory<Bird>(Bird).setLocale('es');
 ```
 
-<details><summary><code>💡 Hint</code></summary><p>
+#### 💡 Hint
 
 ```
 The method is relevant only when using faker in the @Mock() decorator 
@@ -225,7 +226,3 @@ const bird = MockFactory<Bird>(Bird).setLocale('es').one();
 ```
 bird.name will be translated into Spanish
 ```
-
-</p></details>
-
-<br />
