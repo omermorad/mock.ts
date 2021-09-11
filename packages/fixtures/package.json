@@ -1,0 +1,64 @@
+{
+  "name": "@mockinbird/fixtures",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "description": "Mockingbird Fixtures Generator Package",
+  "contributors": [
+    {
+      "name": "Omer Morad",
+      "email": "omer.moradd@gmail.com"
+    },
+    {
+      "name": "Idan Ptichi",
+      "email": "idanpt@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/omermorad/mockingbird.git"
+  },
+  "bugs": {
+    "url": "https://github.com/omermorad/mockingbird/issues"
+  },
+  "readme": "https://github.com/omermorad/mockingbird/tree/refactor/master/packages/fixtures/README.md",
+  "scripts": {
+    "prebuild": "yarn rimraf dist",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "jest --runInBand --verbose",
+    "lint": "eslint '{src,test}/**/*.ts'",
+    "lint:fix": "eslint '{src,test}/**/*.ts' --fix"
+  },
+  "files": [
+    "dist",
+    "index.js",
+    "index.d.ts",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "dependencies": {
+    "@mockinbird/logger": "^0.0.0",
+    "@mockinbird/reflect": "^3.0.1",
+    "@plumier/reflect": "^1.0.5",
+    "lodash.get": "^4.4.2",
+    "readdir": "^1.0.2",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@mockinbird/common": "^2.0.2",
+    "@types/lodash.get": "^4.4.6",
+    "jest": "27.0.6",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.3",
+    "ts-loader": "^6.2.2",
+    "ts-node": "8.10.2",
+    "tsconfig-paths": "^3.9.0",
+    "typedi": "^0.10.0",
+    "typescript": "^3.9.7"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

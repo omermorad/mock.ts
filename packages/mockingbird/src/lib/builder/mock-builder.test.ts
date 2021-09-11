@@ -1,6 +1,5 @@
 import { MockBuilder } from './mock-builder';
-import { Faker, ClassParser, Mock } from '../../';
-import { MockGenerator } from '../generator/mock-generator';
+import { Mock } from '../../index';
 
 class Bird {
   @Mock()
@@ -28,10 +27,7 @@ describe('MockBuilder Integration Test', () => {
   let builder: MockBuilder<Bird>;
 
   beforeAll(() => {
-    const parser = new ClassParser(Faker);
-    const generator = new MockGenerator(parser);
-
-    createNewBuilder = (): MockBuilder<Bird> => new MockBuilder<Bird>(Bird, generator);
+    createNewBuilder = (): MockBuilder<Bird> => new MockBuilder<Bird>(Bird);
   });
 
   scenario('mutating some values', () => {

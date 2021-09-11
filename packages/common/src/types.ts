@@ -9,7 +9,7 @@ export interface ObjectLiteral {
 }
 export type Class<T = any> = new (...args: any[]) => T;
 
-export type ExactValue = string | number | boolean | ObjectLiteral | Date;
+export type ExactValue = string | number | boolean | ObjectLiteral | Date | RegExp;
 
 export type MultiClass = { type: Class; count: number };
 

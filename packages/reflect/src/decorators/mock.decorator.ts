@@ -25,29 +25,16 @@ export function Mock(): PropertyDecorator;
 export function Mock(callback: Callback): PropertyDecorator;
 
 /**
- * Generate the exact given decoratorValue
- *
- * @example
- * Mock(123)
- * Mock('Johnny')
- * Mock(true)
- *
- * @param value
- * @constructor
- */
-export function Mock(value: ExactValue): PropertyDecorator;
-
-/**
  * Generate an object of the given class (who's properties can be decorated with Mock() as well)
  *
  * @example
  * class Dog { ... }
  * Mock(Dog)
  *
- * @param value
  * @constructor
+ * @param targetClass
  */
-export function Mock(value: Class): PropertyDecorator;
+export function Mock(targetClass: Class): PropertyDecorator;
 
 /**
  * Generate a random value from the given enum
@@ -68,6 +55,27 @@ export function Mock(options: EnumObject): PropertyDecorator;
  * @constructor
  */
 export function Mock(options: MultiClass): PropertyDecorator;
+
+/**
+ * Generate a value from regex
+ *
+ * @param regex {RegExp}
+ * @constructor
+ */
+export function Mock(regex: RegExp): PropertyDecorator;
+
+/**
+ * Generate the exact given decoratorValue
+ *
+ * @example
+ * Mock(123)
+ * Mock('Johnny')
+ * Mock(true)
+ *
+ * @param value
+ * @constructor
+ */
+export function Mock(value: ExactValue): PropertyDecorator;
 
 /**
  * Mock property decorator. The options passed will determine the decorated property's generated value

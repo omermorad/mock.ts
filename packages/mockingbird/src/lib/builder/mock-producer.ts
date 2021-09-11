@@ -1,6 +1,6 @@
 import { Class } from '@mockinbird/common';
-import { MockGenerator } from '../generator/mock-generator';
 import { Keys, Mutations } from './types';
+import { mockGenerator } from '@mockinbird/parser';
 
 interface ExtraKeys<TClass> {
   omit?: Keys<TClass>;
@@ -12,10 +12,7 @@ interface ExtraKeys<TClass> {
 export class MockProducer<TClass = any> {
   protected locale = 'en';
 
-  protected constructor(
-    protected readonly targetClass: Class<TClass>,
-    protected readonly mockGenerator: MockGenerator
-  ) {}
+  protected constructor(protected readonly targetClass: Class<TClass>) {}
 
   public setLocale(locale: string): void {
     this.locale = locale;
@@ -25,7 +22,7 @@ export class MockProducer<TClass = any> {
     const { locale } = this;
     const { mutations = {}, plain = false, pick = [], omit = [] } = config;
 
-    return this.mockGenerator.create(this.targetClass, {
+    return mockGenerator.generate(this.targetClass, {
       locale,
       mutations,
       pick,
@@ -39,7 +36,7 @@ export class MockProducer<TClass = any> {
     const { locale } = this;
     const { mutations = {}, plain = false, pick = [], omit = [] } = config;
 
-    return this.mockGenerator.create(this.targetClass, {
+    return mockGenerator.generate(this.targetClass, {
       locale,
       mutations,
       pick,

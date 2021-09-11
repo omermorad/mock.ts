@@ -1,6 +1,7 @@
 {
   "extends": "../tsconfig.build.json",
   "compilerOptions": {
+    "baseUrl": "./",
     "rootDir": "./src",
     "outDir": "./dist",
     "target": "es6"
@@ -8,8 +9,7 @@
   "exclude": [
     "node_modules",
     "test",
-    "src/**/*.test.ts",
-    "index.ts"
+    "src/**/*.test.ts"
   ],
   "include": ["src/"]
 }

@@ -39,7 +39,9 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "@mockinbird/reflect": "^3.0.1"
+    "@mockinbird/reflect": "^3.0.1",
+    "randexp": "^0.5.3",
+    "typedi": "^0.10.0"
   },
   "devDependencies": {
     "@mockinbird/common": "^2.0.2",

@@ -7,6 +7,7 @@ export interface PropertyDecoratorValue {
   isMultiClass(): boolean;
   isCallback(): boolean;
   isEnum(): boolean;
+  isRegex(): boolean;
 }
 
 export class PropertyDecoratorValue {
@@ -30,5 +31,9 @@ export class PropertyDecoratorValue {
 
   public isEnum(): boolean {
     return this.isObject() && this.value.hasOwnProperty('enum');
+  }
+
+  public isRegex(): boolean {
+    return this.value instanceof RegExp;
   }
 }

@@ -1,7 +1,6 @@
 import { ClassLiteral, Class } from '@mockinbird/common';
 import { Keys, Mutations } from './types';
 import { MockProducer } from './mock-producer';
-import { MockGenerator } from '../generator/mock-generator';
 
 export interface MockBuilder<TClass = any> {
   /**
@@ -101,8 +100,8 @@ export class MockBuilder<TClass = any> extends MockProducer<TClass> {
   private omitKeys: Keys<TClass> = [];
   private pickKeys: Keys<TClass> = [];
 
-  public constructor(targetClass: Class<TClass>, mockGenerator: MockGenerator) {
-    super(targetClass, mockGenerator);
+  public constructor(targetClass: Class<TClass>) {
+    super(targetClass);
   }
 
   private clean(): void {

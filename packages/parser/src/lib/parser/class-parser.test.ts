@@ -1,6 +1,8 @@
+import RandExp from 'randexp';
+import { Container } from 'typedi';
 import { Mock } from '@mockinbird/reflect';
-import { ClassParser } from './class-parser';
 import { Faker } from '@mockinbird/common';
+import { ClassParser } from './class-parser';
 
 describe('ClassParser Integration Test', () => {
   class Child {
@@ -24,7 +26,10 @@ describe('ClassParser Integration Test', () => {
   let parser: ClassParser;
 
   beforeAll(() => {
-    parser = new ClassParser(fakerMock as Faker);
+    Container.set('Faker', fakerMock);
+    Container.set('RandExp', RandExp);
+
+    parser = Container.get(ClassParser);
   });
 
   describe('creating a new mock', () => {
@@ -104,7 +109,7 @@ describe('ClassParser Integration Test', () => {
   });
 
   scenario('set a faker locale', () => {
-    beforeAll(() => parser.setFakerLocale('jp'));
+    beforeAll(() => parser.setLocale('jp'));
 
     test('then call faker locale function', () => {
       expect(fakerMock.setLocale).toHaveBeenCalledWith('jp');

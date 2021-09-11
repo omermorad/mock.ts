@@ -1,0 +1,46 @@
+{
+  "name": "@mockinbird/logger",
+  "version": "0.0.0",
+  "license": "MIT",
+  "description": "Mockingbird Logger Package",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "contributors": [
+    {
+      "name": "Omer Morad",
+      "email": "omer.moradd@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/omermorad/mockingbird.git"
+  },
+  "bugs": {
+    "url": "https://github.com/omermorad/mockingbird/issues"
+  },
+  "readme": "https://github.com/omermorad/mockingbird/tree/refactor/master/packages/logger/README.md",
+  "scripts": {
+    "prebuild": "yarn rimraf dist",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "lint": "eslint '{src,test}/**/*.ts'",
+    "lint:fix": "eslint '{src,test}/**/*.ts' --fix"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "dependencies": {
+    "@types/chalk": "^2.2.0",
+    "chalk": "^4.1.2"
+  },
+  "devDependencies": {
+    "ts-node": "8.10.2",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.9.7"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
