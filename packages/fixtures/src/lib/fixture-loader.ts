@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import { Container } from 'typedi';
 import { FixtureEngine } from './fixture-engine';
-import { SnapshotParser } from './snapshot-parser';
-import { Snapshot } from './snapshot';
+import { SnapshotParser } from './snapshot/snapshot-parser';
+import { Snapshot } from './snapshot/snapshot';
 
 export interface FixtureLoader<TClass = any> {
   /**
@@ -37,7 +37,7 @@ export class FixtureLoader<TClass = any> {
     }
 
     const snapshotParser = Container.get<SnapshotParser>(SnapshotParser);
-    const snapshot = Snapshot.create<TClass>({ name: this.fixtureName, path: snapshotPath });
+    const snapshot = Snapshot.fromFile<TClass>({ name: this.fixtureName, path: snapshotPath });
 
     return snapshotParser.parse<TClass>(snapshot, this.fixtureVariantName);
   }

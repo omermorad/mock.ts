@@ -3,9 +3,9 @@ import { Service } from 'typedi';
 import { reflect } from '@plumier/reflect';
 import { Class } from '@mockinbird/common';
 import { Logger } from '@mockinbird/logger';
-import { FixtureEngine } from './fixture-engine';
+import { FixtureEngine } from '../fixture-engine';
 import { Snapshot } from './snapshot';
-import { FIXTURE_DECORATOR_NAME } from '../decorators/fixture.decorator';
+import { FIXTURE_DECORATOR_NAME } from '../../decorators/fixture.decorator';
 
 @Service()
 export class SnapshotParser {

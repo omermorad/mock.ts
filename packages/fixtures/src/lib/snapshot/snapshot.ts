@@ -1,5 +1,7 @@
 import * as fs from 'fs';
-import { MockSnapshot, SnapshotFile } from '../interfaces/interfaces';
+import * as util from 'util';
+import { MockSnapshot, SnapshotFile } from './interfaces';
+import { ERROR_MESSAGES } from '../messages/logger-messages';
 
 export class Snapshot<TClass = any> {
   private readonly snapshotContents: MockSnapshot<TClass>;
@@ -19,19 +21,12 @@ export class Snapshot<TClass = any> {
       const snapshotContents = fs.readFileSync(`${path}/${name}.fixture.json`, 'utf-8');
       return JSON.parse(snapshotContents) as MockSnapshot<TClass>;
     } catch (error) {
-      throw new Error(
-        `
-        Mockingbird can not find fixture named '${name}'. \n
-        Maybe you are trying to load a variant of another fixture?
-        Possible solution: MockFactory(<base-fixture-name>).variant(<fixture-variant-name>)
-        
-        Looked for file '${name}.fixture.json' under ${path}
-        `
-      );
+      const message = util.format(ERROR_MESSAGES.UNABLE_TO_FIND_FIXTURE_NAME, name, path);
+      throw new Error(message);
     }
   }
 
-  public static create<TClass = any>(snapshot: SnapshotFile): Snapshot<TClass> {
+  public static fromFile<TClass = any>(snapshot: SnapshotFile): Snapshot<TClass> {
     return new Snapshot<TClass>(snapshot.name, snapshot.path);
   }
 

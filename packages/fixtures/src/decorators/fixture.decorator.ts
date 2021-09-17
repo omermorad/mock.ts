@@ -1,15 +1,21 @@
 import { decorateClass } from '@plumier/reflect';
 import { Class } from '@mockinbird/common';
 
-export const FIXTURE_DECORATOR_NAME = 'Fixture';
+export const FIXTURE_DECORATOR_NAME = 'Fixture' as const;
 
-interface FixtureDecoratorOptions {
+export interface FixtureDecoratorOptions {
   class: Class;
+}
+
+export interface FixtureDecoratorValues {
+  name: string;
+  options: FixtureDecoratorOptions;
 }
 
 /**
  *
  * @param name {string}
+ * @return ClassDecorator
  */
 export function Fixture(name: string): ClassDecorator;
 
@@ -21,8 +27,11 @@ export function Fixture(name: string): ClassDecorator;
 export function Fixture(name: string, origin: { class: Class }): ClassDecorator;
 
 export function Fixture(name: string, options?: FixtureDecoratorOptions): ClassDecorator {
-  return decorateClass({
-    type: FIXTURE_DECORATOR_NAME,
-    value: { name, options },
-  });
+  return decorateClass(
+    {
+      type: FIXTURE_DECORATOR_NAME,
+      value: { name, options },
+    },
+    { inherit: false }
+  );
 }
